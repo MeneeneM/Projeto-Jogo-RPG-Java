@@ -23,15 +23,14 @@ public class Personagem {
 	private int forca = 5;
 	private int precisao = 60;
 	
-	// Atributo Arma - Classe
-	class Arma
+	// Construtor Personagem
+	public Personagem(String nome, String classe, int idade, char sexo)
 	{
-		String Nome;
-		int dano;
-		int bonusCritico;
+		this.nome = nome;
+		this.classe = classe;
+		this.idade = idade;
+		this.sexo = sexo;
 	}
-	
-	private  Arma arma;
 	
 	// Metodos - basicos - Getters Setters
 	
@@ -41,10 +40,10 @@ public class Personagem {
 		return nome;
 	}
 	
-	public void setNome(String nome1)
+	public void setNome(String nome)
 	{
-		if(nome1 != null && !nome1.isEmpty())
-			nome = nome1;
+		if(nome != null && !nome.isEmpty())
+			this.nome = nome;
 		else
 			System.out.println("Digite algo para o nome!!!");
 	}
@@ -55,9 +54,9 @@ public class Personagem {
 		return classe;
 	}
 	
-	public void setClasse(String classe1)
+	public void setClasse(String classe)
 	{
-		classe = classe1;
+		this.classe = classe;
 	}
 	
 	// Idade
@@ -66,11 +65,11 @@ public class Personagem {
 		return idade;
 	}
 	
-	public void setIdade(int idade1)
+	public void setIdade(int idade)
 	{
-		if(idade1 >=8) 
+		if(idade >=8) 
 		{
-			idade = idade1;
+			this.idade = idade;
 		}
 		else
 			System.out.println("Digite uma idade valida!!!");
@@ -82,10 +81,10 @@ public class Personagem {
 		return sexo;
 	}
 	
-	public void setSexo(char sexo1)
+	public void setSexo(char sexo)
 	{
-		if(sexo1 == 'F' || sexo1 == 'f' || sexo1 == 'M' || sexo1 == 'm')
-			sexo = sexo1;
+		if(sexo == 'F' || sexo == 'f' || sexo == 'M' || sexo == 'm')
+			this.sexo = sexo;
 		else 
 		{
 	        System.out.println("Sexo inválido! Use 'M' ou 'F'.");
@@ -102,6 +101,14 @@ public class Personagem {
 	public int getVidaMaxima() {
 	    return vidaMaxima;
 	}
+	
+	public void setVidaMaxima(int vidaMaxima) {
+	    this.vidaMaxima = vidaMaxima;
+	}
+
+	public void setPontosVida(int pontosVida) {
+	    this.pontosVida = pontosVida;
+	}
 
 	// Mana
 	public int getMana() {
@@ -113,8 +120,29 @@ public class Personagem {
 	}
 
 	// Combate
+	
+	public void setAtaque(int ataque) {
+		if(ataque >= 0) {
+			this.ataque = ataque;			
+		}
+		else
+		{
+			System.out.println("O ataque não pode ser Negativo!!!");
+		}
+	}
+	
 	public int getAtaque() {
 	    return ataque;
+	}
+	
+	public void setDefesa(int defesa) {
+		if(defesa >= 0) {
+			this.defesa = defesa;			
+		}
+		else
+		{
+			System.out.println("O defesa não pode ser Negativa!!!");
+		}
 	}
 
 	public int getDefesa() {
@@ -142,11 +170,6 @@ public class Personagem {
 	public boolean estaDefendendo() {
 	    return estaDefendendo;
 	}
-
-	// Arma
-	public Arma getArma() {
-	    return arma;
-	}
 	
 	// Cura de Vida
 	public int getCurasVidaDisponiveis() {
@@ -173,7 +196,6 @@ public class Personagem {
 		System.out.println("Mana: " + mana);
 		System.out.println("Forca: " + forca);
 		System.out.println("Precisão: " + precisao);
-		System.out.println("Arma: " + arma.Nome + " (Dano: " + arma.dano + ", Crit: " + arma.bonusCritico + ")");
 	}
 	
 	// Metodo Morte
@@ -202,7 +224,7 @@ public class Personagem {
 			return 0;
 		}
 		
-		int dano = ataque + arma.dano + forca;
+		int dano = ataque + forca;
 		
 		// Variação de dano (-20% até +20%)
 		double variacao = random.nextDouble() * 0.4 - 0.2;
@@ -210,7 +232,7 @@ public class Personagem {
 		
 		// Critico
 		int chanceCritico = 5;
-		int critico = chanceCritico + arma.bonusCritico;
+		int critico = chanceCritico;
 		int multiplicadorCritico = 2;
 		
 		if(random.nextInt(100) < critico)
