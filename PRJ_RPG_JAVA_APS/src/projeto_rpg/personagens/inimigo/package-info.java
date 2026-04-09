@@ -1,1 +1,0 @@
-package projeto_rpg.personagens.inimigo;
