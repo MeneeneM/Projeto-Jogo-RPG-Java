@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {		
 	
-	Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
 		
 	public void iniciarJogo()
 	{
@@ -12,10 +12,10 @@ public class Menu {
 		Jogador jogador = null;
 		int escolha = 0;
 		
+		System.out.println("--------- BEM - VINDO ---------");
+		System.out.println("---- ao Jogo de RPG em Java ----");
 		while(true) 
 		{
-			System.out.println("--------- BEM - VINDO ---------");
-			System.out.println("---- ao Jogo de RPG em Java ----");
 			System.out.println("\nDigite para começar: ");
 			System.out.println("1 - Jogar");
 			System.out.println("2 - Criar Personagem");
@@ -43,7 +43,7 @@ public class Menu {
 					if(jogador == null) {
 						System.out.println("Crie um personagem primeiro!!!");
 					}
-					else {						
+					else {
 						jogador.exibirFicha();
 					}
 					break;
@@ -62,16 +62,9 @@ public class Menu {
 	// Obtendo os valores do usuario para a classe Jogador
 	private Jogador criarPersonagem() 
 	{
-		System.out.println("Digite seu nome: ");
-		String nome = sc.nextLine();
-		
-		System.out.println("Digite sua idade: ");
-		int idade = sc.nextInt();
-		
-		System.out.println("Digite seu sexo(M/F): ");
-		char sexo = sc.next().charAt(0);
-		
-		sc.nextLine();
+		String nome = lernomeValido();
+		int idade = leridadeValido();
+		char sexo = lersexoValido();
 		
 		int escolha = 0;
 		
@@ -82,6 +75,7 @@ public class Menu {
 			System.out.println("3 - Arqueiro");
         
         escolha = sc.nextInt();
+        sc.nextLine();
         
         switch(escolha){
         	case 1:
@@ -97,6 +91,78 @@ public class Menu {
 		}
 		
 		return null;
+	}
+	    
+	 // Validar nome
+	private String lernomeValido() {
+	    String nome;
+	    
+		while(true)
+		{
+			System.out.println("Digite seu nome: ");
+			nome = sc.nextLine();
+			
+			if(!nome.trim().isEmpty()) {
+				break;
+			}
+			System.out.println("Nome não pode ser vazio!!!");
+		}	
+		return nome;
+	}
+	    
+	// Validar idade
+	private int leridadeValido() {
+		int idade;
+		
+		while(true) {
+			System.out.println("Digite sua idade: ");
+			
+			if(sc.hasNextInt()) {
+				idade = sc.nextInt();
+				sc.nextLine();
+				
+				if(idade > 5) {
+					return idade;
+				}
+				else {
+				System.out.println("Digite uma idade valida!!!");
+				}
+			}
+			else {
+				System.out.println("Digite apenas números!!!");
+				sc.nextLine();
+			}
+		}
+	}
+	
+	// Validar sexo
+	private char lersexoValido() {
+		char sexo;
+		
+		sc.nextLine();
+		
+		while(true) {
+			System.out.println("Digite seu sexo: ");
+			String s = sc.nextLine();
+			
+			if(s.isEmpty()) {
+				System.out.println("Entrada vazia! Digite um sexo(M/F)!!!");
+				continue;
+			}
+			
+			sexo = s.charAt(0);
+			
+			if(sexo == 'M' || sexo == 'm' || sexo == 'F' || sexo == 'f') {
+				break;
+			}
+		}
+		return sexo;
+	}
+	
+	// Metodo pausar
+	private void pausar() {
+	    System.out.println("\nPressione ENTER para continuar...");
+	    sc.nextLine();
 	}
 	
 	// Limpar o console
