@@ -1,0 +1,1 @@
+package projeto_rpg.personagens;
