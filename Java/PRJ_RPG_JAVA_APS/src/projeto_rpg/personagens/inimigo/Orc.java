@@ -6,6 +6,8 @@ public class Orc extends Inimigo{
 	{
 		super("Orc", "Monstro");
 		
+		this.xp = 175;
+		
 		setAtaque(16);
 		setDefesa(14);
 		setVidaMaxima(200);

@@ -17,9 +17,6 @@ public class Personagem {
 	private int ataque = 10;
 	private int defesa = 10;
 	private boolean estaDefendendo = false;
-	private int manaMaxima = 50;
-	private int mana = 50;
-	private int curasManaDisponiveis = 3;
 	private int forca = 5;
 	private int precisao = 60;
 	
@@ -110,14 +107,6 @@ public class Personagem {
 	    this.pontosVida = pontosVida;
 	}
 
-	// Mana
-	public int getMana() {
-	    return mana;
-	}
-
-	public int getManaMaxima() {
-	    return manaMaxima;
-	}
 
 	// Combate
 	
@@ -176,10 +165,6 @@ public class Personagem {
 	    return curasVidaDisponiveis;
 	}
 
-	// Cura de Mana
-	public int getCurasManaDisponiveis() {
-	    return curasManaDisponiveis;
-	}
 	
 	// Metodos - jogo
 	
@@ -190,10 +175,9 @@ public class Personagem {
 		System.out.println("Classe: " + classe);
 		System.out.println("Level: " + level);
 		System.out.println("Experiencia: " + experiencia);
-		System.out.println("Pontos de Vida: " + pontosVida);
+		System.out.println("Vida: " + pontosVida + "/" + vidaMaxima);
 		System.out.println("Ataque: " + ataque);
 		System.out.println("Defesa: " + defesa);
-		System.out.println("Mana: " + mana);
 		System.out.println("Forca: " + forca);
 		System.out.println("Precisão: " + precisao);
 	}
@@ -293,36 +277,13 @@ public class Personagem {
 		
 	}
 	
-	// Metodo para encher a mana
-	public boolean gastarMana(int custo)
-	{
-		if(mana >= custo)
-		{
-			mana -= custo;
-			return true;
-		}
-		return false;
-	}
-	
-	public void restaurarMana(int valor)
-	{
-		if(curasManaDisponiveis > 0) {
-		mana += valor;
-
-		if(mana > manaMaxima)
-			mana = manaMaxima;
-		curasManaDisponiveis--;
-		System.out.println(nome + " usou Cura de Mana! Restam " + curasManaDisponiveis + " usos.");
-		}
-		else
-		{
-			System.out.println("Você não pode mais usar Cura de Mana!");
-		}
-	}
-	
 	public void resetarCuras() {
 	    curasVidaDisponiveis = 3;
-	    curasManaDisponiveis = 3;
+	}
+	
+	public void restaurarPosBatalha() {
+	    this.pontosVida = this.vidaMaxima;
+	    resetarCuras();
 	}
 	
 	// Metodo subir de level
@@ -349,7 +310,6 @@ public class Personagem {
 			pontosVida = vidaMaxima;
 			ataque += 5;
 			defesa += 5;
-			mana += 5;
 			forca += 3;
 			precisao += 5;
 			

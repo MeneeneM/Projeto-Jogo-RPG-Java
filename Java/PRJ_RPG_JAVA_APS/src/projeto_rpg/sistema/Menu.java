@@ -1,5 +1,6 @@
 package projeto_rpg.sistema;
 import projeto_rpg.personagens.jogador.*;
+import projeto_rpg.personagens.inimigo.*;
 import java.util.Scanner;
 
 public class Menu {		
@@ -28,12 +29,29 @@ public class Menu {
 			switch(escolha) {
 				case 1:
 					if(jogador == null) {
-						System.out.println("Crie um personagem primeiro!!!");						
+						System.out.println("Crie um personagem primeiro!!!");
 					}
 					else {
 						limparTela();
 	                    System.out.println("Iniciando batalha...");
-	                    // metodo batalha	                    
+	                    
+	                    int tipoInimigo = (int)(Math.random() * 3);
+	                    Inimigo inimigo = null;
+	                    
+	                    switch(tipoInimigo) {
+	                    	case 0:
+	                    		inimigo = new Goblin();
+	                    		break;
+	                    	case 1:
+	                    		inimigo = new Orc();
+	                    		break;
+	                    	case 2:
+	                    		inimigo = new Dragao();
+	                    		break;
+	                    }
+	                    
+	                    Batalha batalha = new Batalha();
+	                    batalha.iniciar(jogador, inimigo);
 					}
 					break;
 				case 2:
@@ -138,8 +156,6 @@ public class Menu {
 	// Validar sexo
 	private char lersexoValido() {
 		char sexo;
-		
-		sc.nextLine();
 		
 		while(true) {
 			System.out.println("Digite seu sexo: ");

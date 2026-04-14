@@ -6,6 +6,8 @@ public class Goblin extends Inimigo{
 	{
 		super("Goblin", "Monstro");
 		
+		this.xp = 100;
+		
 		setAtaque(8);
 		setDefesa(5);
 		setVidaMaxima(60);
