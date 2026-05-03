@@ -21,7 +21,8 @@ public class Menu {
 			System.out.println("1 - Jogar");
 			System.out.println("2 - Criar Personagem");
 			System.out.println("3 - Exibir Ficha");
-			System.out.println("4 - Sair");
+			System.out.println("4 - Creditos");
+			System.out.println("5 - Sair");
 			
 			escolha = sc.nextInt();
 			sc.nextLine();
@@ -66,6 +67,10 @@ public class Menu {
 					}
 					break;
 				case 4:
+					Sobre sobre = new Sobre();
+					sobre.exibirSobre();
+					break;
+				case 5:
 	                System.out.println("Saindo do jogo...");
 					sc.close();
 					System.exit(0);
@@ -173,12 +178,6 @@ public class Menu {
 			}
 		}
 		return sexo;
-	}
-	
-	// Metodo pausar
-	private void pausar() {
-	    System.out.println("\nPressione ENTER para continuar...");
-	    sc.nextLine();
 	}
 	
 	// Limpar o console
