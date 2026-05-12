@@ -40,14 +40,14 @@ public class PainelBatalha extends JPanel implements KeyListener{
 		
 		// fundo
 	    if(inimigo instanceof Goblin) {
-	        fundoBatalha = new ImageIcon(getClass().getResource("/resources/image/battle/floresta_batalha.png")).getImage();
+	        fundoBatalha = new ImageIcon(getClass().getResource("/resources/image/battle/campo_batalha.png")).getImage();
 	    }
 	    else if(inimigo instanceof Orc) {
 	        fundoBatalha = new ImageIcon(getClass().getResource("/resources/image/battle/floresta_batalha.png")).getImage();
 	    }
 
 	    else if(inimigo instanceof Dragao) {
-	        fundoBatalha = new ImageIcon(getClass().getResource("/resources/image/battle/floresta_batalha.png")).getImage();
+	        fundoBatalha = new ImageIcon(getClass().getResource("/resources/image/battle/montanha_batalha.png")).getImage();
 	    }
 	    
 	    // fundo jogador
