@@ -37,8 +37,6 @@ public class Personagem {
 	{
 		if(nome != null && !nome.isEmpty())
 			this.nome = nome;
-		else
-			System.out.println("Digite algo para o nome!!!");
 	}
 	
 	// Classe
@@ -78,10 +76,6 @@ public class Personagem {
 		if(ataque >= 0) {
 			this.ataque = ataque;			
 		}
-		else
-		{
-			System.out.println("O ataque não pode ser Negativo!!!");
-		}
 	}
 	
 	public int getAtaque() {
@@ -91,10 +85,6 @@ public class Personagem {
 	public void setDefesa(int defesa) {
 		if(defesa >= 0) {
 			this.defesa = defesa;			
-		}
-		else
-		{
-			System.out.println("O defesa não pode ser Negativa!!!");
 		}
 	}
 
@@ -130,21 +120,7 @@ public class Personagem {
 	}
 
 	// Metodos - jogo
-	
-	public void exibirFicha()
-	{
-		System.out.println("---- FICHA DO PERSONAGEM ----");
-		System.out.println("Nome: " + nome);
-		System.out.println("Classe: " + classe);
-		System.out.println("Level: " + level);
-		System.out.println("Experiencia: " + experiencia);
-		System.out.println("Vida: " + pontosVida + "/" + vidaMaxima);
-		System.out.println("Ataque: " + ataque);
-		System.out.println("Defesa: " + defesa);
-		System.out.println("Forca: " + forca);
-		System.out.println("Precisão: " + precisao);
-	}
-	
+
 	// Metodo Morte
 	public boolean estaVivo()
 	{
@@ -167,7 +143,6 @@ public class Personagem {
 		int chanceAcerto = precisao;
 		if(random.nextInt(100) > chanceAcerto)
 		{
-			System.out.println("O ataque falhou!!!");
 			return 0;
 		}
 		
@@ -178,13 +153,11 @@ public class Personagem {
 		dano += (int)(dano * variacao);
 		
 		// Critico
-		int chanceCritico = 5;
-		int critico = chanceCritico;
+		int chanceCritico = 10;
 		int multiplicadorCritico = 2;
 		
-		if(random.nextInt(100) < critico)
+		if(random.nextInt(100) < chanceCritico)
 		{
-			System.out.println("Ataque Critico!!!");
 		   dano *= multiplicadorCritico;
 		}
 		return dano;
@@ -212,13 +185,11 @@ public class Personagem {
 		
 		if(pontosVida <0)
 			pontosVida = 0;
-		System.out.println(nome + " recebeu " + danoFinal + " de dano. Vida atual: " + pontosVida);
 	}
 	
 	public void defender()
 	{
 		estaDefendendo = true;
-		System.out.println(nome + " está defendendo e receberá menos dano no próximo ataque!");
 	}
 	
 	// Metodo para curar a vida
@@ -231,13 +202,7 @@ public class Personagem {
 	    if(pontosVida > vidaMaxima)
 	        pontosVida = vidaMaxima;
 	    curasVidaDisponiveis--;
-	    System.out.println(nome + " usou Cura! Restam " + curasVidaDisponiveis + " curas.");
 		}
-        else 
-        {
-        	System.out.println("Você não pode mais usar Cura de Vida!");
-        }
-		
 	}
 	
 	public void resetarCuras() {
@@ -254,7 +219,6 @@ public class Personagem {
 	public void ganharExperiencia(int xp)
 	{
 		experiencia += xp;
-		System.out.println(nome + " ganhou " + xp + " de experiencia!");
 		subirLevel();
 	}
 
@@ -275,8 +239,6 @@ public class Personagem {
 			defesa += 5;
 			forca += 3;
 			precisao += 5;
-			
-			System.out.println("Você subiu para o level " + level + "!");
 			
 			xp = 100 * level;
 		}

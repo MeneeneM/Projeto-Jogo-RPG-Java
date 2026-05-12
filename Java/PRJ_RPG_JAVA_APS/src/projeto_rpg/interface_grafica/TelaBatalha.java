@@ -23,7 +23,12 @@ public class TelaBatalha extends JFrame {
         setResizable(false);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        add(new PainelBatalha(jogador, inimigo));
 
+        PainelBatalha painel = new PainelBatalha(jogador, inimigo);
+        add(painel);
         setVisible(true);
+        painel.requestFocusInWindow();
     }
 }

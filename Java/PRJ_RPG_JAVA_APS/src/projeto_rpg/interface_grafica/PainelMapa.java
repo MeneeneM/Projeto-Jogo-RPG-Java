@@ -99,26 +99,26 @@ public class PainelMapa extends JPanel implements KeyListener, MouseListener {
         
         if(classeJogador.equals("Guerreiro")){
         	animacaoAndando = new Image[3];
-        	animacaoAndando[0] = new ImageIcon(getClass().getResource("/resources/image/move/guerreiro_walk1.png")).getImage();
-        	animacaoAndando[1] = new ImageIcon(getClass().getResource("/resources/image/move/guerreiro_walk2.png")).getImage();
-        	animacaoAndando[2] = new ImageIcon(getClass().getResource("/resources/image/move/guerreiro_walk3.png")).getImage();
+        	animacaoAndando[0] = new ImageIcon(getClass().getResource("/resources/image/move/guerreiro_walk1.PNG")).getImage();
+        	animacaoAndando[1] = new ImageIcon(getClass().getResource("/resources/image/move/guerreiro_walk2.PNG")).getImage();
+        	animacaoAndando[2] = new ImageIcon(getClass().getResource("/resources/image/move/guerreiro_walk3.PNG")).getImage();
         }
         else if(classeJogador.equals("Mago")) {
         	animacaoAndando = new Image[3];
-        	animacaoAndando[0] = new ImageIcon(getClass().getResource("/resources/image/move/mago_walk1.png")).getImage();
-        	animacaoAndando[1] = new ImageIcon(getClass().getResource("/resources/image/move/mago_walk2.png")).getImage();
-        	animacaoAndando[2] = new ImageIcon(getClass().getResource("/resources/image/move/mago_walk3.png")).getImage();
+        	animacaoAndando[0] = new ImageIcon(getClass().getResource("/resources/image/move/mago_walk1.PNG")).getImage();
+        	animacaoAndando[1] = new ImageIcon(getClass().getResource("/resources/image/move/mago_walk2.PNG")).getImage();
+        	animacaoAndando[2] = new ImageIcon(getClass().getResource("/resources/image/move/mago_walk3.PNG")).getImage();
         }
         else if(classeJogador.equals("Arqueiro")) {
         	animacaoAndando = new Image[3];
-        	animacaoAndando[0] = new ImageIcon(getClass().getResource("/resources/image/move/arqueiro_walk1.png")).getImage();
-        	animacaoAndando[1] = new ImageIcon(getClass().getResource("/resources/image/move/arqueiro_walk2.png")).getImage();
-        	animacaoAndando[2] = new ImageIcon(getClass().getResource("/resources/image/move/arqueiro_walk3.png")).getImage();
+        	animacaoAndando[0] = new ImageIcon(getClass().getResource("/resources/image/move/arqueiro_walk1.PNG")).getImage();
+        	animacaoAndando[1] = new ImageIcon(getClass().getResource("/resources/image/move/arqueiro_walk2.PNG")).getImage();
+        	animacaoAndando[2] = new ImageIcon(getClass().getResource("/resources/image/move/arqueiro_walk3.PNG")).getImage();
         }
         
-        spriteGoblin = new ImageIcon(getClass().getResource("/resources/image/jogador.png")).getImage();
-        spriteOrc = new ImageIcon(getClass().getResource("/resources/image/jogador.png")).getImage();
-        spriteDragao = new ImageIcon(getClass().getResource("/resources/image/jogador.png")).getImage();
+        spriteGoblin = new ImageIcon(getClass().getResource("/resources/image/goblin.png")).getImage();
+        spriteOrc = new ImageIcon(getClass().getResource("/resources/image/orc.png")).getImage();
+        spriteDragao = new ImageIcon(getClass().getResource("/resources/image/dragao.png")).getImage();
     }
     private void moverJogador() {
         // Vertical
