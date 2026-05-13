@@ -59,6 +59,10 @@ public class PainelMapa extends JPanel implements KeyListener, MouseListener {
 
     private boolean emBatalha = false;
     
+    // exibir ficha do jogador
+    private Rectangle botaoFicha;
+    private Rectangle botaoSair;
+    
     public PainelMapa(Jogador jogador) {
 
         this.jogador = jogador;
@@ -68,6 +72,9 @@ public class PainelMapa extends JPanel implements KeyListener, MouseListener {
         addKeyListener(this);
         
         addMouseListener(this);
+        
+        botaoFicha = new Rectangle(45, 430, 90, 35);
+        botaoSair = new Rectangle(210, 430, 70, 35);
 
         // Carregar imagem do mapa
         fundoMapa = new ImageIcon(getClass().getResource("/resources/image/mapa.png")).getImage();
@@ -281,7 +288,7 @@ public class PainelMapa extends JPanel implements KeyListener, MouseListener {
 
         // Nome
         g.setColor(new Color(255, 220, 120));
-        g.drawString(jogador.getNome(), hudX + 15, hudY + 25);
+        g.drawString(jogador.getNome(), hudX + 15, hudY -5);
 
         // Linha separadora
         g.drawLine(hudX + 10, hudY + 35, hudX + 250, hudY + 35);
@@ -300,20 +307,29 @@ public class PainelMapa extends JPanel implements KeyListener, MouseListener {
         g.drawString("Ataque: " + jogador.getAtaque(),hudX + 15, hudY + 110);
         g.drawString("Defesa: " + jogador.getDefesa(),hudX + 140, hudY + 110);
         
-        // Opção sair
-        g.setFont(new Font("Serif", Font.BOLD, 22));
-        String textoSair = "SAIR";
-        // posição ao lado da HUD
-        int sairX = hudX + 180;
-        int sairY = hudY + 25;
+     // ficha
 
-        // sombra
+        String textoFicha = "FICHA";
+        int fichaX = 45;
+        int fichaY = 455;
+
+        g.setColor(Color.BLACK);
+        g.drawString(textoFicha, fichaX + 2, fichaY + 2);
+
+        g.setColor(new Color(210, 190, 140));
+        g.drawString(textoFicha, fichaX, fichaY);
+        
+        // sair
+
+        String textoSair = "SAIR";
+        int sairX = 210;
+        int sairY = 455;
+
         g.setColor(Color.BLACK);
         g.drawString(textoSair, sairX + 2, sairY + 2);
 
-        // texto principal
         g.setColor(new Color(210, 190, 140));
-        g.drawString(textoSair, sairX, sairY);
+        g.drawString(textoSair, sairX, sairY);    
     }
 
 	@Override
@@ -344,15 +360,53 @@ public class PainelMapa extends JPanel implements KeyListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        int mouseX = e.getX();
-        int mouseY = e.getY();
-
-        // área do texto SAIR
-        if(mouseX >= 200 && mouseX <= 280 && mouseY >= 430 && mouseY <= 460) {
-            JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
+    	Point p = e.getPoint();
+        // ficha
+        if(botaoFicha.contains(p)) {
+            exibirFicha();
+        }
+        // sair
+        if(botaoSair.contains(p)) {
+            Window janela = SwingUtilities.getWindowAncestor(PainelMapa.this);
             janela.dispose();
             new TelaInicial();
         }
+    }
+    
+    private void exibirFicha() {
+
+        String ficha =
+                "----- FICHA -----\n\n" +
+
+                "Nome: " + jogador.getNome() + "\n" +
+                "Classe: " + jogador.getClasse() + "\n\n" +
+
+                "Level: " + jogador.getLevel() + "\n" +
+                "Experiência: " + jogador.getExperiencia() + "\n\n" +
+
+                "Vida: " +
+                jogador.getPontosVida() + "/" + jogador.getVidaMaxima() + "\n\n" +
+
+                "Ataque: " + jogador.getAtaque() + "\n" +
+                "Defesa: " + jogador.getDefesa() + "\n" +
+                "Força: " + jogador.getForca() + "\n" +
+                "Precisão: " + jogador.getPrecisao() + "\n\n" +
+
+                "Curas: " + jogador.getCurasVidaDisponiveis();
+
+        JTextArea area = new JTextArea(ficha);
+
+        area.setEditable(false);
+        area.setFont(new Font("Monospaced", Font.BOLD, 16));
+        area.setBackground(new Color(30, 30, 30));
+        area.setForeground(new Color(220, 220, 220));
+
+        JOptionPane.showMessageDialog(
+                this,
+                new JScrollPane(area),
+                "Ficha do Personagem",
+                JOptionPane.PLAIN_MESSAGE
+        );
     }
 
     @Override

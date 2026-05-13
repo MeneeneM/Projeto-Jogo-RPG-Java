@@ -1,6 +1,5 @@
 package projeto_rpg.interface_grafica;
 
-import projeto_rpg.personagens.jogador.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -55,8 +54,9 @@ public class TelaInicial extends JFrame {
 
         // Opções do menu
         JLabel jogar = criarOpcao("JOGAR", 360, 220);
-        JLabel creditos = criarOpcao("CRÉDITOS", 340, 290);
-        JLabel sair = criarOpcao("SAIR", 370, 360);
+        JLabel controles = criarOpcao("CONSTROLES", 320, 290);
+        JLabel creditos = criarOpcao("CRÉDITOS", 340, 360);
+        JLabel sair = criarOpcao("SAIR", 370, 420);
 
         // Eventos
         
@@ -68,6 +68,13 @@ public class TelaInicial extends JFrame {
             }
         });
 
+        controles.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new TelaControles();
+            }
+        });
+        
         creditos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -84,6 +91,8 @@ public class TelaInicial extends JFrame {
 
         painel.add(jogar);
 
+        painel.add(controles);
+        
         painel.add(creditos);
 
         painel.add(sair);
